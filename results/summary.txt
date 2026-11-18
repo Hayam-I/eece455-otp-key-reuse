@@ -1,0 +1,51 @@
+OTP key reuse experiments
+keys: seeded generator, seed 455 (reproducible demo data, not secure)
+
+[1] Corpus
+    lengths: m1=197, m2=98, m3=400, m4=158, m5=319, m6=266
+    characters: lowercase 79.3%, space 17.4%, uppercase 1.7%, punctuation 1.4%, digit 0.2%
+
+[2] Pad manager
+    second message at offset 0 with a normal pad -> KeyReuseError: key bytes between 0 and 97 were already used
+    the reuse experiment has to set allow_reuse=True
+
+[3] Ciphertexts written and checked against the data contract
+    data/ciphertexts.json  (reuse)
+    data/ciphertexts_control.json  (control)
+
+[4] Ci xor Cj = Pi xor Pj ?   (15 pairs, 2564 overlapping positions)
+    reuse    holds for 15/15 pairs, 2564/2564 positions
+    control  holds for  0/15 pairs,   16/2564 positions
+    positions equal just by chance would be about 10.0
+
+[5] Chi-square of the bytes of Ci xor Cj against uniform (255 degrees of freedom)
+    for uniform bytes we expect about 255 (standard deviation 22.6)
+    reuse       14465.8
+    control       236.6
+    control repeated 1000 times: mean 254.7, st. dev. 22.5, min 191.1, max 312.3
+    repetitions that reached the reuse value: 0
+
+[6] Share of positions in each class
+    byte range        usual cause                       reuse  predicted  control  uniform
+    0x00              same character                     8.5%          -     0.3%     0.4%
+    0x01-0x1F         two letters of the same case      59.0%          -    12.0%    12.1%
+    0x20-0x3F         uppercase xor lowercase letter     2.1%          -    14.2%    12.5%
+    0x41-0x5A         space xor lowercase letter        29.1%          -     9.9%    10.2%
+    0x61-0x7A         space xor uppercase letter         0.5%          -    10.0%    10.2%
+    other below 0x80  letter xor digit or punctuation    0.7%          -     4.1%     4.7%
+    0x80-0xFF         impossible for ASCII xor ASCII     0.0%          -    49.5%    50.0%
+    (no data/predictions.json yet, so the predicted column is empty)
+
+    what actually meets at each position (from the plaintexts):
+      lowercase + lowercase       63.3%
+      lowercase + space           27.2%
+      space + space                3.3%
+      lowercase + uppercase        2.1%
+      lowercase + punctuation      2.0%
+      uppercase + uppercase        0.6%
+
+[7] Different lengths
+    key bytes 0-318 were used by at least two messages
+    key bytes 319-399 were used only by the longest message, so its last 81 characters are still safe
+
+tables and figures are in results/

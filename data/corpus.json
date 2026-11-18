@@ -1,0 +1,30 @@
+{
+  "description": "Six made-up messages written for this project in the style of old intelligence cables, nothing is copied from real traffic. This is the ground truth, so only the scoring code should read it, not the attack.",
+  "encoding": "ascii",
+  "messages": [
+    {
+      "id": "m1",
+      "plaintext": "Funds for the autumn quarter have not been received. The landlord of the safe house is asking questions and we may have to move the radio set before the next scheduled transmission. Advise at once."
+    },
+    {
+      "id": "m2",
+      "plaintext": "Courier arrives Thursday on the night train. Meet him at the usual place and bring the new papers."
+    },
+    {
+      "id": "m3",
+      "plaintext": "Report from the western station: the factory near the river has doubled its night shift and the guards at the gate were changed on Monday. Our man inside thinks that the first shipment will leave by rail within ten days. He cannot obtain the exact date without risk. We propose to place a second observer at the junction and to pay the signalman for the timetable. Confirm that the money is approved."
+    },
+    {
+      "id": "m4",
+      "plaintext": "The source in the ministry reports that the delegation will travel north before the end of the month. Request instructions on whether contact should continue."
+    },
+    {
+      "id": "m5",
+      "plaintext": "Your telegram number 214 was received in a damaged condition and the second part could not be read. Please repeat the section about the harbour schedule and the names of the three ships. Until then the station will keep silent and the watch on the northern road will continue as before, with reports sent every evening."
+    },
+    {
+      "id": "m6",
+      "plaintext": "Agent LARK met the engineer twice this week and obtained drawings of the new receiver. The film will be sent with the diplomatic bag on the ninth. He believes that he is being watched and asks that the meetings be reduced to one each month until the matter is clear."
+    }
+  ]
+}

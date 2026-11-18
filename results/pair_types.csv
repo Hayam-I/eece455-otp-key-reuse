@@ -1,0 +1,13 @@
+pair,positions,share
+lowercase + lowercase,1622,0.6326
+lowercase + space,698,0.2722
+space + space,85,0.0332
+lowercase + uppercase,54,0.0211
+lowercase + punctuation,52,0.0203
+uppercase + uppercase,15,0.0059
+space + uppercase,14,0.0055
+digit + lowercase,14,0.0055
+punctuation + space,7,0.0027
+digit + space,1,0.0004
+punctuation + punctuation,1,0.0004
+punctuation + uppercase,1,0.0004

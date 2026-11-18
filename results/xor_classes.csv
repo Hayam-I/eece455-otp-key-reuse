@@ -1,0 +1,8 @@
+class,byte_range,usual_cause,reuse,predicted,control,uniform
+zero,0x00,same character,0.0846,,0.0031,0.0039
+same_case,0x01-0x1F,two letters of the same case,0.5905,,0.1201,0.1211
+opposite_case,0x20-0x3F,uppercase xor lowercase letter,0.0211,,0.1416,0.125
+space_lower,0x41-0x5A,space xor lowercase letter,0.2913,,0.0987,0.1016
+space_upper,0x61-0x7A,space xor uppercase letter,0.0055,,0.0998,0.1016
+other_low,other below 0x80,letter xor digit or punctuation,0.007,,0.0413,0.0469
+high_bit,0x80-0xFF,impossible for ASCII xor ASCII,0.0,,0.4953,0.5
