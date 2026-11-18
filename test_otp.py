@@ -58,6 +58,36 @@ class TestBasics(unittest.TestCase):
         self.assertEqual(xor_bytes(b"secret", b"      "), b"SECRET")
 
 
+class TestHandExample(unittest.TestCase):
+    """The hand-worked example from section 3.6 of the report."""
+
+    P1 = b"attack at"
+    P2 = b"hold fast"
+    K = bytes.fromhex("3A91C75E0DB268F41B")
+    C1 = bytes.fromhex("5BE5B33F6ED948956F")
+    C2 = bytes.fromhex("52FEAB3A2DD409876F")
+    D = bytes.fromhex("091B1805430D411200")
+
+    def test_ciphertexts(self):
+        self.assertEqual(encrypt(self.P1, self.K), self.C1)
+        self.assertEqual(encrypt(self.P2, self.K), self.C2)
+
+    def test_key_cancels(self):
+        self.assertEqual(xor_bytes(self.C1, self.C2), self.D)
+        self.assertEqual(xor_bytes(self.P1, self.P2), self.D)
+
+    def test_crib(self):
+        crib = b"attack"
+        self.assertEqual(xor_bytes(crib, self.D[0:6]), b"hold f")
+        # wrong offset gives garbage
+        self.assertEqual(xor_bytes(crib, self.D[2:8]).hex(), "7971376c2279")
+
+    def test_key_recovery(self):
+        key_part = xor_bytes(self.C2[:6], b"hold f")
+        self.assertEqual(key_part, self.K[:6])
+        self.assertEqual(xor_bytes(self.C1[:6], key_part), b"attack")
+
+
 class TestPad(unittest.TestCase):
 
     def test_sender_and_receiver(self):

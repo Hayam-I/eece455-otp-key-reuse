@@ -46,6 +46,7 @@ Runs the tests.
 - `data/corpus.json` - the six plaintexts (ground truth, only for scoring)
 - `data/ciphertexts.json` - reuse set, one key for all six messages
 - `data/ciphertexts_control.json` - control set, one key per message
+- `data/predictions.json` - predicted class shares from section 3.4
 - `results/summary.txt` - everything the script prints
 - `results/xor_identity.csv` - C1 xor C2 = P1 xor P2 check for every pair
 - `results/chi_square.csv` - chi-square against uniform, reuse and control
@@ -71,16 +72,21 @@ them, and `run_all.py` refuses to write a file with any other field.
 
 ## Predicted class shares
 
-To compare the measurements with the theory, put the predicted share of each
-class in `data/predictions.json` and run the script again. They show up in
-the table and in the second figure. Classes that are not in the file are left
-empty. The numbers below only show the format:
-
-    {"zero": 0.07, "same_case": 0.55, "space_lower": 0.30}
+`data/predictions.json` has the predictions from section 3.4 of the report,
+one set for each space probability s (0.15, 0.18, 0.20). They are printed
+next to the measured shares, and the second figure draws the s=0.18 one.
 
 Class names: `zero` (0x00), `same_case` (0x01-0x1F), `opposite_case`
 (0x20-0x3F), `space_lower` (0x41-0x5A), `space_upper` (0x61-0x7A),
 `other_low` (the rest below 0x80), `high_bit` (0x80-0xFF).
+
+The numbers are taken from the table in section 3.4 like this:
+
+- `zero` = identical letters + space xor space
+- `same_case` = letter xor letter - identical letters
+- `space_lower` = space xor letter
+- everything else = 0, because the model only has lowercase letters and
+  spaces (the three shares above already add up to 1)
 
 ## Notes
 

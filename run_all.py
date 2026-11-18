@@ -34,6 +34,10 @@ N_TRIALS = 1000   # repetitions of the control experiment for the chi-square che
 REUSE_FILE = "ciphertexts.json"
 CONTROL_FILE = "ciphertexts_control.json"
 
+# predictions.json has one prediction per space probability s (report section 3.4).
+# s=0.18 is Shannon's value, so that is the one drawn in the figure.
+MAIN_PREDICTION = "s=0.18"
+
 # Classes for the byte Ci xor Cj:
 # (name, range as shown in the tables, usual cause, list of (low, high))
 CLASSES = [
@@ -268,10 +272,11 @@ def plot_histogram(hist_reuse, hist_control, chi_reuse, chi_control, path):
     plt.close(fig)
 
 
-def plot_classes(rows, path):
+def plot_classes(rows, path, prediction=None):
+    """prediction is the name of the predicted column to draw, e.g. 'predicted s=0.18'."""
     series = [("Reused key (measured)", BLUE, "reuse")]
-    if any(r["predicted"] != "" for r in rows):
-        series.append(("Reused key (predicted)", GREEN, "predicted"))
+    if prediction:
+        series.append((f"Reused key ({prediction})", GREEN, prediction))
     series.append(("Independent keys (measured)", ORANGE, "control"))
 
     fig, ax = plt.subplots(figsize=(9, 4.6 if len(series) == 2 else 5.3))
@@ -283,7 +288,7 @@ def plot_classes(rows, path):
                 continue
             value = 100 * r[column]
             ax.barh(y + shift, value, height=h, color=colour, label=label if y == 0 else None)
-            if column == "reuse":
+            if column != "control":
                 ax.text(value + 0.6, y + shift, f"{value:.1f}%", va="center", fontsize=9, color=GREY)
 
     # black tick on the control bar = share expected for uniform random bytes
@@ -400,32 +405,42 @@ def main():
         f"st. dev. {statistics.stdev(trials):.1f}, min {min(trials):.1f}, max {max(trials):.1f}")
     out(f"    repetitions that reached the reuse value: {sum(t >= chi['reuse'] for t in trials)}")
 
-    # 6. share of positions in each class, next to the theory prediction if we have it
-    predicted = {}
+    # 6. share of positions in each class, next to the predictions of section 3.4
+    predictions = {}
     if (DATA / "predictions.json").exists():
         with open(DATA / "predictions.json", encoding="utf-8") as f:
-            predicted = json.load(f)
+            predictions = json.load(f)
     class_rows = []
     for name, byte_range, cause, ranges in CLASSES:
         width = sum(high - low + 1 for low, high in ranges)
-        class_rows.append({
+        row = {
             "class": name,
             "byte_range": byte_range,
             "usual_cause": cause,
             "reuse": class_count(hist["reuse"], ranges) / n_pos,
-            "predicted": predicted.get(name, ""),
-            "control": class_count(hist["control"], ranges) / n_pos,
-            "uniform": width / 256,
-        })
+        }
+        for label, shares in predictions.items():
+            row[f"predicted {label}"] = shares.get(name, "")
+        row["control"] = class_count(hist["control"], ranges) / n_pos
+        row["uniform"] = width / 256
+        class_rows.append(row)
+
     out()
     out("[6] Share of positions in each class")
-    out(f"    {'byte range':<17} {'usual cause':<31} {'reuse':>7} {'predicted':>10} {'control':>8} {'uniform':>8}")
+    if predictions:
+        out("    (s=... columns: predicted for the reused key, s = probability of a space)")
+    header = f"    {'byte range':<17} {'usual cause':<31} {'reuse':>7}"
+    for label in predictions:
+        header += f" {label:>7}"
+    out(header + f" {'control':>8} {'uniform':>8}")
     for r in class_rows:
-        pred = "-" if r["predicted"] == "" else f"{100 * r['predicted']:.1f}%"
-        out(f"    {r['byte_range']:<17} {r['usual_cause']:<31} {100 * r['reuse']:>6.1f}% {pred:>10} "
-            f"{100 * r['control']:>7.1f}% {100 * r['uniform']:>7.1f}%")
-    if not predicted:
-        out("    (no data/predictions.json yet, so the predicted column is empty)")
+        line = f"    {r['byte_range']:<17} {r['usual_cause']:<31} {100 * r['reuse']:>6.1f}%"
+        for label in predictions:
+            p = r[f"predicted {label}"]
+            line += f" {'-':>7}" if p == "" else f" {100 * p:>6.1f}%"
+        out(line + f" {100 * r['control']:>7.1f}% {100 * r['uniform']:>7.1f}%")
+    if not predictions:
+        out("    (no data/predictions.json, so there is no predicted column)")
 
     types = pair_types(messages)
     out()
@@ -463,7 +478,9 @@ def main():
     ])
     plot_histogram(hist["reuse"], hist["control"], chi["reuse"], chi["control"],
                    results / "fig_xor_histogram.png")
-    plot_classes(class_rows, results / "fig_xor_classes.png")
+    drawn = MAIN_PREDICTION if MAIN_PREDICTION in predictions else next(iter(predictions), None)
+    plot_classes(class_rows, results / "fig_xor_classes.png",
+                 f"predicted {drawn}" if drawn else None)
 
     out()
     out(f"tables and figures are in {results.name}/")

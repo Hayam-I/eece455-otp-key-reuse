@@ -1,0 +1,29 @@
+{
+  "s=0.15": {
+    "zero": 0.0703,
+    "same_case": 0.6747,
+    "opposite_case": 0,
+    "space_lower": 0.2550,
+    "space_upper": 0,
+    "other_low": 0,
+    "high_bit": 0
+  },
+  "s=0.18": {
+    "zero": 0.0769,
+    "same_case": 0.6279,
+    "opposite_case": 0,
+    "space_lower": 0.2952,
+    "space_upper": 0,
+    "other_low": 0,
+    "high_bit": 0
+  },
+  "s=0.20": {
+    "zero": 0.0823,
+    "same_case": 0.5977,
+    "opposite_case": 0,
+    "space_lower": 0.3200,
+    "space_upper": 0,
+    "other_low": 0,
+    "high_bit": 0
+  }
+}
