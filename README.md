@@ -53,6 +53,7 @@ Runs the tests.
 - `results/xor_classes.csv` - share of positions in each XOR class
 - `results/xor_histogram.csv` - the raw histogram behind the first figure
 - `results/pair_types.csv` - which kinds of characters meet (from the plaintexts)
+- `results/class_sources.csv` - which character pairs end up in each XOR class
 - `results/fig_xor_histogram.png`, `results/fig_xor_classes.png` - figures
 
 ## Ciphertext file format

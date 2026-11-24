@@ -1,0 +1,16 @@
+class,pair,positions,share
+same_case,lowercase + lowercase,1491,0.5815
+space_lower,lowercase + space,698,0.2722
+zero,same lowercase,131,0.0511
+zero,same space,85,0.0332
+opposite_case,lowercase + uppercase,54,0.0211
+space_lower,lowercase + punctuation,39,0.0152
+same_case,uppercase + uppercase,15,0.0059
+space_upper,space + uppercase,14,0.0055
+other_low,lowercase + punctuation,13,0.0051
+space_lower,digit + lowercase,10,0.0039
+same_case,punctuation + space,7,0.0027
+other_low,digit + lowercase,4,0.0016
+same_case,digit + space,1,0.0004
+zero,same punctuation,1,0.0004
+other_low,punctuation + uppercase,1,0.0004

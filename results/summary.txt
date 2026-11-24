@@ -4,6 +4,7 @@ keys: seeded generator, seed 455 (reproducible demo data, not secure)
 [1] Corpus
     lengths: m1=197, m2=98, m3=400, m4=158, m5=319, m6=266
     characters: lowercase 79.3%, space 17.4%, uppercase 1.7%, punctuation 1.4%, digit 0.2%
+    sum of squared letter frequencies: 0.0751  (chance two letters are equal, section 3.4 uses 0.0661)
 
 [2] Pad manager
     second message at offset 0 with a normal pad -> KeyReuseError: key bytes between 0 and 97 were already used
@@ -43,6 +44,14 @@ keys: seeded generator, seed 455 (reproducible demo data, not secure)
       lowercase + uppercase        2.1%
       lowercase + punctuation      2.0%
       uppercase + uppercase        0.6%
+
+    where each reuse share comes from (largest parts):
+      0x00              same lowercase 5.1%, same space 3.3%, same punctuation 0.0%
+      0x01-0x1F         lowercase + lowercase 58.2%, uppercase + uppercase 0.6%, punctuation + space 0.3%
+      0x20-0x3F         lowercase + uppercase 2.1%
+      0x41-0x5A         lowercase + space 27.2%, lowercase + punctuation 1.5%, digit + lowercase 0.4%
+      0x61-0x7A         space + uppercase 0.5%
+      other below 0x80  lowercase + punctuation 0.5%, digit + lowercase 0.2%, punctuation + uppercase 0.0%
 
 [7] Different lengths
     key bytes 0-318 were used by at least two messages

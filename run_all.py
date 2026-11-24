@@ -201,6 +201,28 @@ def pair_types(messages):
     return counts
 
 
+def class_of(byte):
+    for name, _, _, ranges in CLASSES:
+        if any(low <= byte <= high for low, high in ranges):
+            return name
+
+
+def class_sources(messages):
+    """Which kinds of character pairs end up in each class.
+
+    Under key reuse Ci xor Cj = Pi xor Pj, so this can be read off the plaintexts.
+    """
+    counts = Counter()
+    for a, b in combinations(messages.values(), 2):
+        for x, y in zip(a, b):
+            if x == y:
+                kind = "same " + char_type(x)
+            else:
+                kind = " + ".join(sorted([char_type(x), char_type(y)]))
+            counts[(class_of(x ^ y), kind)] += 1
+    return counts
+
+
 def write_csv(path, rows):
     with open(path, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=list(rows[0]), lineterminator="\n")
@@ -352,6 +374,10 @@ def main():
     out("[1] Corpus")
     out("    lengths: " + ", ".join(f"{mid}={len(p)}" for mid, p in messages.items()))
     out("    characters: " + ", ".join(f"{k} {100 * n / total_chars:.1f}%" for k, n in mix.most_common()))
+    letters = Counter(b for p in messages.values() for b in p if chr(b).islower())
+    n_letters = sum(letters.values())
+    out(f"    sum of squared letter frequencies: {sum((n / n_letters) ** 2 for n in letters.values()):.4f}"
+        "  (chance two letters are equal, section 3.4 uses 0.0661)")
 
     # 2. the pad manager refuses reuse unless the flag is set
     first, second = list(messages.values())[:2]
@@ -448,6 +474,14 @@ def main():
     for kind, n in types.most_common(6):
         out(f"      {kind:<26} {100 * n / n_pos:>5.1f}%")
 
+    sources = class_sources(messages)
+    out()
+    out("    where each reuse share comes from (largest parts):")
+    for name, byte_range, _, _ in CLASSES:
+        parts = sorted(((n, kind) for (c, kind), n in sources.items() if c == name), reverse=True)
+        if parts:
+            out(f"      {byte_range:<17} " + ", ".join(f"{kind} {100 * n / n_pos:.1f}%" for n, kind in parts[:3]))
+
     # 7. different lengths
     lengths = sorted(len(p) for p in messages.values())
     out()
@@ -472,6 +506,10 @@ def main():
     write_csv(results / "xor_histogram.csv", [
         {"byte": f"0x{v:02X}", "reuse": hist["reuse"][v], "control": hist["control"][v]}
         for v in range(256)
+    ])
+    write_csv(results / "class_sources.csv", [
+        {"class": c, "pair": kind, "positions": n, "share": round(n / n_pos, 4)}
+        for (c, kind), n in sorted(sources.items(), key=lambda item: -item[1])
     ])
     write_csv(results / "pair_types.csv", [
         {"pair": kind, "positions": n, "share": round(n / n_pos, 4)} for kind, n in types.most_common()
