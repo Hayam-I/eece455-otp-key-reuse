@@ -12,15 +12,11 @@ produced here.
 
 Python 3.10 or newer (tested with 3.11.9).
 
-```bash
-pip install -r requirements.txt
-```
+    pip install -r requirements.txt
 
 ## Running
 
-```bash
-python run_all.py
-```
+    python run_all.py
 
 Encrypts the six messages in `data/corpus.json`, writes the two ciphertext
 files and puts all tables and figures in `results/`. The keys come from a
@@ -31,18 +27,14 @@ The ciphertext files are frozen. Running the script again reproduces them
 byte for byte, so `git status` should not show them as modified. If it does,
 the corpus or the seed was changed: tell the group before committing.
 
-```bash
-python run_all.py --fresh
-```
+    python run_all.py --fresh
 
 Same experiments with new keys from the OS random generator (`secrets`).
 Output goes to `fresh_run/` so the frozen files are not touched. The reuse
 numbers are identical to the normal run because the key cancels in
-C1 XOR C2. Only the control numbers move a little.
+C1 xor C2. Only the control numbers move a little.
 
-```bash
-python -m unittest -v
-```
+    python -m unittest -v
 
 Runs the tests.
 
@@ -57,7 +49,7 @@ Runs the tests.
 - `data/ciphertexts_control.json` - control set, one key per message
 - `data/predictions.json` - predicted class shares from section 3.4
 - `results/summary.txt` - everything the script prints
-- `results/xor_identity.csv` - C1 XOR C2 = P1 XOR P2 check for every pair
+- `results/xor_identity.csv` - C1 xor C2 = P1 xor P2 check for every pair
 - `results/chi_square.csv` - chi-square against uniform, reuse and control
 - `results/xor_classes.csv` - share of positions in each XOR class
 - `results/xor_histogram.csv` - the raw histogram behind the first figure
@@ -70,15 +62,13 @@ Runs the tests.
 Both ciphertext files have this format. There is no plaintext and no key in
 them, and `run_all.py` refuses to write a file with any other field.
 
-```json
-{
-  "set": "reuse",
-  "messages": [
-    {"id": "m1", "ciphertext_hex": "..."},
-    {"id": "m2", "ciphertext_hex": "..."}
-  ]
-}
-```
+    {
+      "set": "reuse",
+      "messages": [
+        {"id": "m1", "ciphertext_hex": "..."},
+        {"id": "m2", "ciphertext_hex": "..."}
+      ]
+    }
 
 `"set"` is `"reuse"` or `"control"`. The ids are the same as in the corpus.
 
@@ -94,9 +84,9 @@ Class names: `zero` (0x00), `same_case` (0x01-0x1F), `opposite_case`
 
 The numbers are taken from the table in section 3.4 like this:
 
-- `zero` = identical letters + space XOR space
-- `same_case` = letter XOR letter - identical letters
-- `space_lower` = space XOR letter
+- `zero` = identical letters + space xor space
+- `same_case` = letter xor letter - identical letters
+- `space_lower` = space xor letter
 - everything else = 0, because the model only has lowercase letters and
   spaces (the three shares above already add up to 1)
 
@@ -120,7 +110,7 @@ against the reused-key ciphertexts.
 When two messages are encrypted using the same one-time-pad key, XORing their
 ciphertexts cancels the key:
 
-`C1 XOR C2 = P1 XOR P2`
+    C1 XOR C2 = P1 XOR P2
 
 This allows candidate plaintext fragments, known as cribs, to be tested at
 different offsets. If a candidate produces plausible text in one message,
@@ -155,15 +145,11 @@ not replace the original ciphertexts when running the actual experiments.
 
 Install the dependencies from the repository root:
 
-```bash
-pip install -r requirements.txt
-```
+    pip install -r requirements.txt
 
 Run the evaluation:
 
-```bash
-python evaluate.py
-```
+    python evaluate.py
 
 The evaluation uses the data and output paths specified in `config.py`.
 For the real-data evaluation, the output directory is `results/real/`.
@@ -174,15 +160,11 @@ stored directly under `results/`.
 
 To run the tests:
 
-```bash
-python -m unittest -v
-```
+    python -m unittest -v
 
 To generate dummy data for testing:
 
-```bash
-python make_dummy.py
-```
+    python make_dummy.py
 
 Dummy data is intended for testing and demonstration. It should not be used
 as a replacement for the original ciphertexts when reporting the experimental
@@ -271,24 +253,22 @@ results of the experiments.
 
 The resulting directory structure is:
 
-```text
-results/
-├── summary.txt
-├── xor_identity.csv
-├── chi_square.csv
-├── xor_classes.csv
-├── xor_histogram.csv
-├── pair_types.csv
-├── class_sources.csv
-├── fig_xor_histogram.png
-├── fig_xor_classes.png
-└── real/
+    results/
     ├── summary.txt
-    ├── fig1_success_vs_crib_length.png
-    ├── fig2_success_vs_num_ciphertexts.png
-    ├── fig3_recovery_per_round.png
-    └── other CSV output files
-```
+    ├── xor_identity.csv
+    ├── chi_square.csv
+    ├── xor_classes.csv
+    ├── xor_histogram.csv
+    ├── pair_types.csv
+    ├── class_sources.csv
+    ├── fig_xor_histogram.png
+    ├── fig_xor_classes.png
+    └── real/
+        ├── summary.txt
+        ├── fig1_success_vs_crib_length.png
+        ├── fig2_success_vs_num_ciphertexts.png
+        ├── fig3_recovery_per_round.png
+        └── other CSV output files
 
 ### Relationship between the experiments
 
@@ -299,7 +279,7 @@ byte values.
 The crib-dragging implementation builds on the same reused-key ciphertexts
 and demonstrates how the relationship
 
-`C1 XOR C2 = P1 XOR P2`
+    C1 XOR C2 = P1 XOR P2
 
 can be exploited to identify candidate plaintext fragments and recover
 plaintext characters.
