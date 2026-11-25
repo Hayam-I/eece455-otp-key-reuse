@@ -1,0 +1,6 @@
+n_ciphertexts,runs,correct,wrong,total,frac_correct,precision,complete_messages,rounds
+2,1,0.0,0.0,532.0,0.0,nan,0.0,0.0
+3,1,0.0,0.0,492.0,0.0,nan,0.0,0.0
+4,1,0.0,0.0,993.0,0.0,nan,0.0,0.0
+5,1,0.0,0.0,1091.0,0.0,nan,0.0,0.0
+6,1,0.0,0.0,1357.0,0.0,nan,0.0,0.0

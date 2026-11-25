@@ -1,0 +1,64 @@
+Data: real (ciphertexts.json from C)
+Step-by-step recovery on the reused-key set (ciphertexts only; '_' = unknown)
+
+--- round 0: start
+    known key bytes: 0/400
+    m1: _____________________________________________________________________________________________________________________________________________________________________________________________________
+    m2: __________________________________________________________________________________________________
+    m3: ________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+    m4: ______________________________________________________________________________________________________________________________________________________________
+    m5: _______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+    m6: __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+--- round 1: crib ' of the ' in m1 @ 65 (8 bytes); crib ' in the ' in m4 @ 10 (8 bytes); crib ' and the ' in m3 @ 87 (8 bytes); crib ' at the ' in m2 @ 53 (8 bytes); crib ' could ' in m5 @ 80 (7 bytes); crib ' for the ' in m1 @ 5 (5 bytes); extended 9 positions
+    known key bytes: 53/400
+    m1: _____ for the autu______________________________ved. The landl__d of the ______ouse is asking _ue____________________________________________________________________________________________________
+    m2: _____er arrives Th______________________________t him at the u__al place ______ing the new pap_rs_
+    m3: _____t from the we______________________________r the river ha__doubled i______ht shift and th_ g_______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+    m4: _____ource in the ______________________________gation will tr__el north ______ the end of the_mo_____________________________________________________________
+    m5: _____telegram numb______________________________ed condition a__ the seco______t could not be _ea______________________________________________________________________________________________________________________________________________________________________________________________________________________________
+    m6: _____ LARK met the______________________________obtained drawi__s of the ______ceiver. The fil_ w_________________________________________________________________________________________________________________________________________________________________________
+
+--- round 2: crib ' and the ' in m5 @ 60 (2 bytes); crib ' on the ' in m2 @ 24 (8 bytes); crib ' before ' in m4 @ 72 (6 bytes); crib ' before ' in m1 @ 141 (8 bytes); crib ' at the ' in m4 @ 36 (7 bytes); crib ' at the ' in m3 @ 102 (8 bytes); extended 3 positions
+    known key bytes: 95/400
+    m1: _____ for the autu______rter have___t been re___ved. The landlord of the safe house is asking _ue_____s and we_______________________________ before ________________________________________________
+    m2: _____er arrives Th______ on the n___t train. ___t him at the usual place and bring the new pap_rs_
+    m3: _____t from the we______station: ___ factory ___r the river has doubled its night shift and th_ g_____ at the _______________________________r man in___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+    m4: _____ource in the ______ry report___hat the d___gation will travel north before the end of the_mo_____Request _______________________________ should _________
+    m5: _____telegram numb______ was rece___d in a da___ed condition and the second part could not be _ea_____ease rep_______________________________ur sched__________________________________________________________________________________________________________________________________________________________________________
+    m6: _____ LARK met the______eer twice___is week a___obtained drawings of the new receiver. The fil_ w_____e sent w_______________________________inth. He_____________________________________________________________________________________________________________________
+
+--- round 3: crib ' this ' in m6 @ 33 (3 bytes); crib ' about ' in m5 @ 125 (7 bytes); crib ' at the ' in m5 @ 110 (7 bytes); crib ' on the ' in m6 @ 132 (7 bytes); crib ' and the ' in m5 @ 152 (9 bytes); crib ' have ' in m1 @ 114 (2 bytes)
+    known key bytes: 130/400
+    m1: _____ for the autu______rter have not been re___ved. The landlord of the safe house is asking _ue_____s and we_may have _____ve the radio s__ before ___ next sch____________________________________
+    m2: _____er arrives Th______ on the night train. ___t him at the usual place and bring the new pap_rs_
+    m3: _____t from the we______station: the factory ___r the river has doubled its night shift and th_ g_____ at the _ate were _____ed on Monday. __r man in___e thinks _______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+    m4: _____ource in the ______ry reports that the d___gation will travel north before the end of the_mo_____Request _nstructio_____ whether conta__ should ___tinue.
+    m5: _____telegram numb______ was received in a da___ed condition and the second part could not be _ea_____ease rep_at the se_____ about the har__ur sched___ and the ______________________________________________________________________________________________________________________________________________________________
+    m6: _____ LARK met the______eer twice this week a___obtained drawings of the new receiver. The fil_ w_____e sent w_th the di_____tic bag on the__inth. He___lieves th_________________________________________________________________________________________________________
+
+--- round 5: crib ' and ' in m6 @ 43 (2 bytes); crib ' the ' in m1 @ 148 (3 bytes); crib ' will ' in m3 @ 184 (6 bytes); crib ' Our ' in m3 @ 138 (1 bytes); crib ' that ' in m3 @ 160 (2 bytes); crib ' at the ' in m6 @ 194 (7 bytes)
+    known key bytes: 170/400
+    m1: _und_ for the autum_____rter have not been rece_ved. The landlord of the safe house is asking _ue_____s and we may have __ move the radio s_t before the next scheduled transm__________vise a_____e.
+    m2: _our_er arrives Thu_____ on the night train. Me_t him at the usual place and bring the new pap_rs_
+    m3: _epo_t from the wes_____station: the factory ne_r the river has doubled its night shift and th_ g_____ at the gate were __anged on Monday. _ur man inside thinks that the firs__________ will _____ by rai______________________________________________________________________________________________________________________________________________________________________________________________________
+    m4: _he _ource in the m_____ry reports that the del_gation will travel north before the end of the_mo_____Request instructio__ on whether conta_t should continue.
+    m5: _our_telegram numbe_____ was received in a dama_ed condition and the second part could not be _ea_____ease repeat the se__ion about the har_our schedule and the names of the __________s. Unt_____en the _____________________________________________________________________________________________________________________
+    m6: _gen_ LARK met the _____eer twice this week and_obtained drawings of the new receiver. The fil_ w_____e sent with the di__omatic bag on the_ninth. He believes that he is bein__________and as_____at the ________________________________________________________________
+
+--- round 10: crib ' been ' in m5 @ 214 (1 bytes)
+    known key bytes: 221/400
+    m1: _und_ for the autum_____rter have not been rece_ved. The landlord of the safe house is asking _ue_tions and we may have __ move the radio s_t before the next scheduled transmis___n. __vise a__once.
+    m2: _our_er arrives Thu_____ on the night train. Me_t him at the usual place and bring the new pap_rs_
+    m3: _epo_t from the wes_____station: the factory ne_r the river has doubled its night shift and th_ g_ards at the gate were __anged on Monday. _ur man inside thinks that the first ___pme__ will __ave by rai_ w_th_n ten _a____He c__no_ o_t_in the e_act _a_e _or_th_____________________________________________________________________________________________________________________________________________
+    m4: _he _ource in the m_____ry reports that the del_gation will travel north before the end of the_mo_th. Request instructio__ on whether conta_t should continue.
+    m5: _our_telegram numbe_____ was received in a dama_ed condition and the second part could not be _ea_. Please repeat the se__ion about the har_our schedule and the names of the th___ sh__s. Unt__ then the _ta_io_ will _e____ilen__an_ t_e_watch on_the _o_th_th_ir____________________________________________________________
+    m6: _gen_ LARK met the _____eer twice this week and_obtained drawings of the new receiver. The fil_ w_ll be sent with the di__omatic bag on the_ninth. He believes that he is being ___che__and as__ that the _ee_in_s be r_d____ to __e _ac_ _onth unt_l th_ _at_ct_rn_______
+--- analyst-assisted completion (words supplied after reading the partial text)
+    m2@0:'Courier', m2@16:'Thursday', m2@45:'Meet', m2@91:'papers', m2@97:'.', m4@110:'instructions', m4@134:'contact', m1@168:'transmission', m1@182:'Advise', m1@189:'at', m1@191:' ', m6@202:'meetings', m6@214:'reduced', m6@225:'one', m6@229:'each', m6@234:'month', m6@240:'until', m6@246:'the', m6@250:'matter', m6@256:' ', m6@257:'is', m6@259:' ', m6@260:'clear', m6@265:'.', m5@266:' ', m5@267:'continue', m5@275:' ', m5@276:'as', m5@278:' ', m5@279:'before', m5@285:', ', m5@287:'with', m5@291:' ', m5@292:'reports', m5@299:' ', m5@300:'sent', m5@304:' ', m5@305:'every', m5@310:' ', m5@311:'evening', m5@318:'.'
+    m1: Funds for the autumn quarter have not been received. The landlord of the safe house is asking questions and we may have to move the radio set before the next scheduled transmission. Advise at once.
+    m2: Courier arrives Thursday on the night train. Meet him at the usual place and bring the new papers.
+    m3: Report from the western station: the factory near the river has doubled its night shift and the guards at the gate were changed on Monday. Our man inside thinks that the first shipment will leave by rail within ten days. He cannot obtain the exact date without risk. We propose to place a second observer at the junctio_________________________________________________________________________________
+    m4: The source in the ministry reports that the delegation will travel north before the end of the month. Request instructions on whether contact should continue.
+    m5: Your telegram number 214 was received in a damaged condition and the second part could not be read. Please repeat the section about the harbour schedule and the names of the three ships. Until then the station will keep silent and the watch on the northern road will continue as before, with reports sent every evening.
+    m6: Agent LARK met the engineer twice this week and obtained drawings of the new receiver. The film will be sent with the diplomatic bag on the ninth. He believes that he is being watched and asks that the meetings be reduced to one each month until the matter is clear.
