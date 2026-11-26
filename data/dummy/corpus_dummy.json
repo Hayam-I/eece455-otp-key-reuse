@@ -1,0 +1,28 @@
+{
+  "messages": [
+    {
+      "id": "m1",
+      "plaintext": "Shipment of grain will leave the northern depot on Tuesday. Confirm receipt at the usual place."
+    },
+    {
+      "id": "m2",
+      "plaintext": "The committee has reviewed the proposal and finds the cost too high for this season. We ask that the supplier reduce the price by one fifth before the contract is signed on Friday."
+    },
+    {
+      "id": "m3",
+      "plaintext": "Our representative arrived in the city on the ninth and met the two gentlemen as arranged. They have agreed to provide the maps, but they want payment in advance and a guarantee that their names will not be mentioned in any report. Please advise how much we may offer."
+    },
+    {
+      "id": "m4",
+      "plaintext": "Regarding your question about the machines: the first group was tested last week and worked well, although the engineers say that the cooling system must be changed before the second group can be put into use. The delay should not be longer than three weeks."
+    },
+    {
+      "id": "m5",
+      "plaintext": "Please send the figures for the month of March together with the list of all goods that are still waiting at the harbour."
+    },
+    {
+      "id": "m6",
+      "plaintext": "In reply to your letter of the fourth, we regret that the meeting cannot take place at the time proposed, since the main speaker is unwell and the hall has been promised to another group for the whole afternoon. We suggest the following Wednesday, in the morning, and we will inform all members by telephone once you have confirmed. The agenda remains unchanged."
+    }
+  ]
+}

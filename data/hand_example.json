@@ -1,0 +1,12 @@
+{
+  "source": "hand-checkable example from report section 3.6",
+  "p1": "attack at",
+  "p2": "hold fast",
+  "k_hex": "3a91c75e0db268f41b",
+  "c1_hex": "5be5b33f6ed948956f",
+  "c2_hex": "52feab3a2dd409876f",
+  "d_hex": "091b1805430d411200",
+  "crib": "attack",
+  "crib_offset": 0,
+  "wrong_offset": 2
+}

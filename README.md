@@ -34,9 +34,9 @@ Output goes to `fresh_run/` so the frozen files are not touched. The reuse
 numbers are identical to the normal run because the key cancels in
 C1 xor C2. Only the control numbers move a little.
 
-    python -m unittest -v
+    python -m pytest
 
-Runs the tests.
+Runs all the tests (the OTP tests and the crib-dragging tests).
 
 ## Files
 
@@ -129,8 +129,10 @@ plaintext recovery.
 - `evaluate.py` - runs the experiments and generates the results
 - `test_crib_drag.py` - tests for the crib-dragging implementation
 - `make_dummy.py` - creates dummy data for testing
-- `data/hand_example.json` - small example dataset for demonstrating the attack
-- `walkthrough.txt` - walkthrough of the implementation and attack
+- `data/dummy/` - the dummy data the tests use (made by `make_dummy.py`)
+- `data/hand_example.json` - the hand-checkable example from report section 3.6,
+  used as a known-answer test
+- `results/real/walkthrough.txt` - walkthrough of the implementation and attack
 
 The implementation uses the existing project data:
 
@@ -160,7 +162,7 @@ stored directly under `results/`.
 
 To run the tests:
 
-    python -m unittest -v
+    python -m pytest
 
 To generate dummy data for testing:
 
